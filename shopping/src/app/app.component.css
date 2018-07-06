@@ -1,0 +1,13 @@
+.body-container{
+    width: 1440px;
+    margin: 0 auto;
+}
+
+.header-wrap{
+    margin-top: 30px;
+}
+
+.body-wraper{
+    height: 500px; 
+    background-color: pink;
+}
