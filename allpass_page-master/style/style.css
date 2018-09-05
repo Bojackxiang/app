@@ -1,0 +1,555 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-content {
+  display: none;
+}
+
+body {
+  background-color: #f0f0f0;
+  font-family: "Microsoft YaHei";
+}
+
+.body-container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.menu-bar {
+  background-image: url("../assets/banner.png");
+  background-color: white;
+  height: 786px;
+  background-repeat: no-repeat;
+}
+
+.menu-bar ul {
+  list-style-type: none;
+  overflow: hidden;
+  position: relative;
+  top: 70px;
+  left: 750px;
+  display: inline-block;
+}
+
+.menu-bar ul li {
+  float: left;
+  padding: 10px 15px;
+  overflow: hidden;
+}
+
+.menu-bar ul li a {
+  display: block;
+  font-size: 12px;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* <!-- ********************************************* -->
+<!-- aisf 介绍 --> */
+
+.intro {
+  background-color: white;
+  padding-bottom: 100px;
+}
+
+.intro .container {
+  width: 960px;
+}
+
+.sliding-button {
+  cursor: pointer;
+}
+
+.aisf-logo {
+  height: 300px;
+}
+
+.intro-content-title {
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 70px;
+}
+
+.intro-content-description {
+  font-size: 13px;
+  padding-right: 15px;
+}
+
+.card-intro .container {
+  width: 960px;
+  background-color: white;
+}
+
+.card-intro-title {
+  font-size: 30px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.card-intro-content {
+  padding-right: 80px;
+  letter-spacing: 1px;
+  font-size: 13px;
+}
+
+.card-intro-button {
+  text-decoration: none !important;
+  padding: 5px 10px;
+  background-color: #55AFDB;
+  color: white;
+}
+
+.card-intro-button:hover {
+  cursor: pointer;
+}
+
+.card-intro-button:hover {
+  color: white;
+}
+
+.card-intro-card {
+  width: 100%;
+}
+
+.section-title p {
+  letter-spacing: 2px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.card {
+  padding-top: 20px;
+  border-bottom: 10px solid #cd292b;
+  background-color: white;
+}
+
+.card-img {
+  text-align: center;
+}
+
+.dot {
+  font-size: 15px;
+  color: #b22222;
+}
+
+.card-content {
+  padding: 5px;
+  margin-top: 10px
+}
+
+.card-content p {
+  margin: 0;
+  font-size: 7px;
+  letter-spacing: 0px;
+  font-weight: bold;
+}
+
+.card-address {
+  font-size: 9px;
+  padding-top: 0px;
+}
+
+.card-address p {
+  font-size: 12px;
+  letter-spacing: -1px;
+}
+
+.card {
+  margin-top: 30px;
+}
+
+.register-wrap {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  ;
+}
+
+.form-container .row {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.register-form-button {
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: #61BAE7;
+  color: white;
+  display: inline-block;
+  margin: 0 auto;
+  border: 0px;
+}
+
+.register-form-button-wrap {
+  text-align: center;
+  padding: 20px;
+}
+
+.registerForm {
+  width: 960px;
+}
+
+.registerForm form {
+  margin-top: 100px;
+  width: 960px;
+}
+
+.under-line {
+  height: 5px;
+  width: 50px;
+  background: #53ADD9;
+  margin: 0 auto;
+}
+
+/* ******************************************* */
+
+/* footer 样式 */
+
+.footer-wrapper {
+  background-color: #3cbbec;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+
+.footer-wrapper .container {
+  width: 960px;
+}
+
+.footer-content {
+  padding-top: 50px;
+}
+
+.footer-content p {
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-size: 19px;
+}
+
+.footer-content .larger {
+  font-weight: bold;
+}
+
+.footer-content .small {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.scan-img {
+  text-align: right;
+  padding-top: 50px;
+}
+
+.scan-img img {
+  width: 30%;
+}
+
+.footer-right {
+  text-align: center;
+  padding-top: 100px;
+  color: white;
+  font-weight: bold;
+}
+
+.blank-row {
+  padding-top: 50px;
+}
+
+.card {
+  border-bottom: 10px solid #61BAE7;
+  margin-top: 10px;
+}
+
+.card-image {
+  text-align: center;
+}
+
+.card-image img {
+  width: 70%;
+}
+
+.card-address {
+  font-size: 10px;
+  font-weight: bold;
+  margin-top: 20px;
+  padding-bottom: 15px;
+}
+
+.section .container {
+  width: 960px;
+}
+
+.card-description {
+  padding: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  margin-top: 10px;
+}
+
+.floating-button {
+  position: fixed;
+  z-index: 222;
+  right: 0;
+  top: 200px;
+  width: 100px;
+}
+
+.floating-button img {
+  width: 100%;
+}
+
+.floating-button:hover {
+  cursor: pointer;
+}
+
+.submit-alert {
+  text-align: center;
+  margin-top: 30px;
+  display: none;
+  color: #b22222;
+}
+
+/* **************************** */
+
+/* mobile header background */
+
+.m-wrapper {
+  display: none;
+}
+
+.m-banner {
+  display: none;
+}
+
+.email-warning {
+  display: none;
+  color: #b22222;
+}
+
+.phone-warning {
+  display: none;
+  color: #b22222;
+}
+
+.name-warning {
+  display: none;
+  color: #b22222;
+}
+
+.email-warning-m {
+  display: none;
+  color: #b22222;
+}
+
+.phone-warning-m {
+  display: none;
+  color: #b22222;
+}
+
+.name-warning-m {
+  display: none;
+  color: #b22222;
+}
+
+@media (max-width: 1000px) {
+  .m-header-logo {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+  }
+  .m-header-logo img {
+    width: 180px;
+  }
+  .m-wrapper {
+    display: block;
+  }
+  .m-banner {
+    display: block;
+    padding: 0;
+    background: url("../assets/banner-m.png");
+    height: 700px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+  .m-wrapper {
+    background-color: white;
+  }
+  .desktop {
+    display: none;
+  }
+  .m-banner img {
+    width: 100%;
+  }
+  .btn-register {
+    margin-top: -50px;
+    text-align: right;
+    padding-right: 900px;
+    position: fixed;
+    z-index: 9999;
+  }
+  .btn-float img {
+    width: 70px;
+    position: fixed;
+    z-index: 999;
+    right: 20px;
+    top: 250px;
+  }
+  .logo-container {
+    width: 150px;
+    text-align: center;
+    margin-top: 70px;
+  }
+  .logo-container img {
+    width: 250px;
+  }
+  .title {
+    margin-top: 30px;
+  }
+  .title .aisf-title {
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 20px;
+    font-family: "Microsoft YaHei";
+    letter-spacing: 2px;
+  }
+  .aisf-description {
+    font-size: 12px;
+    padding: 20px;
+    font-family: "Microsoft YaHei";
+    font-weight: normal;
+    font-size: 12px;
+    letter-spacing: 0px;
+    line-height: 20px;
+  }
+  .card-img-wrap {
+    text-align: center;
+    margin-top: 70px;
+  }
+  .card-img-wrap img {
+    width: 300px;
+  }
+  .obtain-button-wrapper {
+    padding-left: 20px;
+    padding-bottom: 30px;
+  }
+  .register-button {
+    background-color: #b22222;
+    padding: 5px 10px;
+    color: white;
+    border: 0;
+    background-color: #55AFDB;
+  }
+  .title-center {
+    text-align: center;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 60px;
+  }
+  .business-wrapper {
+    margin-top: 50px;
+    background-color: #f1f1f1;
+  }
+  .card-container {
+    padding-left: 105px;
+    padding-right: 15px;
+  }
+  .title-register {
+    margin-top: 35px;
+  }
+  .title-register {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .footer-container {
+    font-size: 15px;
+    padding-top: 30px;
+    padding-left: 35px;
+    color: white;
+    background-color: #55AFDB;
+    line-height: 30px;
+  }
+  .footer-contact {
+    font-size: 12px;
+    color: white;
+    background: #55AFDB;
+    line-height: 15px;
+    font-weight: bold;
+  }
+  .scan {
+    margin-top: 15px;
+  }
+  .footer-container .scan img {
+    width: 120px;
+    padding-top: 10px;
+    padding-bottom: 100px;
+  }
+  .footer-container {
+    margin-top: 50px;
+  }
+  .submit-alertm {
+    display: none;
+    color: #b22222;
+  }
+  .email-warning {
+    display: none;
+    color: #b22222;
+  }
+  .phone-warning {
+    display: none;
+    color: #b22222;
+  }
+  .info-list-ul {
+    padding: 5px;
+  }
+  .info-list-ul li {
+    padding: 0px;
+  }
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+    left: 0;
+    background-color: #61BAE7;
+    color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: white;
+    display: block;
+    transition: 0.3s;
+  }
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  .openNav {
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    position: relative;
+    top: 30px;
+    left: 20px;
+  }
+  .navbar-content {
+    display: none;
+  }
+}
