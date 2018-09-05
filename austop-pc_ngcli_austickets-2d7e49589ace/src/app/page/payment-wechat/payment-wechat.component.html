@@ -1,0 +1,43 @@
+<div class="g-padding-wrapper">
+  <div class="g-container-center-padding">
+    <div class="m-title f-mgt-32 f-mgb-32">
+      <h2>微信支付</h2>
+      <div class="underline"><span></span></div>
+      <div class="back"><a (click)="gotoPaymentList()">< 更换支付方式</a></div>
+    </div>
+    <div class="loading" *ngIf="!paymentWechat">
+      <img src="/assets/images/loading.gif" width="50">
+    </div>
+    <div class="m-payment" *ngIf="paymentWechat">
+      <div class="qrcode"><img src="data:image/png;base64,{{this.paymentWechat.qrcodeImgBase64}}"></div>
+      <table class="payment">
+        <tr>
+          <td>收款账号</td>
+          <td>Austop Media Pty Ltd</td>
+        </tr>
+        <tr>
+          <td>订单号</td>
+          <td>{{this.paymentWechat.orderCode}}</td>
+        </tr>
+        <tr>
+          <td>总订单金额</td>
+          <td><span class="title">${{this.totalAmount.toFixed(2)}}</span> (${{orderAmount.toFixed(2)}} +
+            ${{surcharge.toFixed(2)}} - ${{discount.toFixed(2)}})
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="f-text-right">
+            <a class="u-button u-button-red u-button-td" (click)="paymentCheck()">确认支付</a>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="description">
+            *请尽快使用微信扫描二维码支付以防止门票售罄，
+            支付完毕后请点击确认支付验证支付结果，
+            AusTickets将立即确认到账并向您的邮箱发送订单确认信。
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

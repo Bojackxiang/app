@@ -1,0 +1,29 @@
+<div class="g-padding-wrapper">
+  <div class="g-container-center-padding">
+    <div class="m-title f-mgt-32 f-mgb-32">
+      <h2>Paypal</h2>
+      <div class="underline"><span></span></div>
+      <div class="back"><a (click)="gotoPaymentList()">< 更换支付方式</a></div>
+    </div>
+    <div class="m-payment">
+      <div class="qrcode"><a id="paypal-button"></a></div>
+      <table class="payment" *ngIf="this.orderAmount">
+        <tr>
+          <td>订单号</td>
+          <td>{{this.orderCode}}</td>
+        </tr>
+        <tr>
+          <td>总订单金额</td>
+          <td><span class="title">${{this.totalAmount.toFixed(2)}}</span> (${{this.orderAmount.toFixed(2)}} +
+            ${{this.surcharge.toFixed(2)}} - ${{this.discount.toFixed(2)}})
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="description">
+            *请尽快支付以防止门票售罄，AusTickets将立即确认到账并向您的邮箱发送订单确认信。
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

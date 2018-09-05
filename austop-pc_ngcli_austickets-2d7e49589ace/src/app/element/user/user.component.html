@@ -1,0 +1,88 @@
+<!-- 1. Before Login -->
+<div class="login-box" *ngIf="!commonService.isLogin">
+  <a class="login-button" id="login" (click)="loginBox()">登陆</a>
+  <a class="login-button register-button" id="register" (click)="registerBox()">注册</a>
+</div>
+<!-- 1. After Login -->
+<div class="login-box" *ngIf="commonService.isLogin">
+  <div class="m-user-control">
+    <span>{{ userEmail }}</span>
+    <div class="panel">
+      <div class="top"></div>
+      <ul>
+        <li><a routerLink="{{setting.ROUTE_ORDER}}">订单管理</a></li>
+        <li><a routerLink="{{setting.ROUTE_USER}}/information">个人信息</a></li>
+        <li><a (click)="logoff()">注销</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="m-user-box" [class.fadeIn]="boxShow" id="m-user-box">
+  <div class="title" *ngIf="userBoxType == 0">
+    <h3>会员登录</h3>
+    <a (click)="registerBox()">[ 还不是会员？现在<span>立刻注册</span> ]</a>
+  </div>
+  <div class="title" *ngIf="userBoxType == 1">
+    <h3>会员注册</h3>
+    <a (click)="loginBox()">[ 已是会员？现在<span>立刻登录</span> ]</a>
+  </div>
+  <div class="title" *ngIf="userBoxType == 2">
+    <h3>忘记密码</h3>
+  </div>
+
+  <div class="input-box">
+    <div class="u-icon u-icon-username"></div>
+    <input type="text" class="u-input-login" placeholder="会员账号Email" [(ngModel)]="userEmail">
+  </div>
+  <div class="input-box" *ngIf="userBoxType == 0 || userBoxType == 1">
+    <div class="u-icon u-icon-password"></div>
+    <input type="password" class="u-input-login" placeholder="会员账号密码" [(ngModel)]="userPassword">
+  </div>
+  <div class="input-box" *ngIf="userBoxType == 1">
+    <div class="u-icon u-icon-confirm"></div>
+    <input type="password" class="u-input-login" placeholder="确认密码" [(ngModel)]="userPasswordCheck">
+  </div>
+
+  <!-- 2. Login Box -->
+  <div *ngIf="userBoxType == 0">
+    <a class="u-button u-button-login" (click)="login()">登录</a>
+  </div>
+  <div class="word" *ngIf="userBoxType == 0">
+    <div>
+      <a (click)="forgotPassword()">忘记密码?</a>
+    </div>
+    <div>
+      <a (click)="hideBox()">返回</a>
+    </div>
+  </div>
+
+  <!-- 2. Register Box -->
+  <div *ngIf="userBoxType == 1">
+    <a class="u-button u-button-login" (click)="register()">注册</a>
+  </div>
+  <div class="word" *ngIf="userBoxType == 1">
+    <div>
+      <input type="checkbox" id="register_agree" [(ngModel)]="privacyPolicy">
+      <label for="register_agree">阅读并同意 </label>
+      <a class="iframe" (click)="commonService.iframe('privacy')">隐私政策</a>
+    </div>
+    <div>
+      <a (click)="hideBox()">返回</a>
+    </div>
+  </div>
+
+  <!-- 2. Forget Box -->
+  <div *ngIf="userBoxType == 2">
+    <a class="u-button u-button-login" (click)="resetPassword()">重置密码</a>
+  </div>
+  <div class="word" *ngIf="userBoxType == 2">
+    <div>
+    </div>
+    <div>
+      <a (click)="switchBox()">返回</a>
+    </div>
+  </div>
+</div>
+
+<div class="m-user-cover" [class.fadeIn]="boxShow" id="user-cover"></div>

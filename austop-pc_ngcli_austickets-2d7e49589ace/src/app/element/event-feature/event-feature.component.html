@@ -1,0 +1,27 @@
+<div class="g-padding-wrapper f-pdb-10" *ngIf="events && events.length">
+  <div class="g-container-center-padding">
+    <ul class="m-event-thumbnail-list">
+      <div class="loading" *ngIf="!events">
+        <img src="/assets/images/loading.gif" width="50">
+      </div>
+      <li class="m-left-title-wrap home">
+        <div class="m-title">
+          <h2>{{eventCategoryName}}</h2>
+          <div class="underline underline-thinlong"><span></span></div>
+          <div class="f-text-center"><a routerLink="{{setting.ROUTE_EVENT}}/category/{{eventCategoryName}}" class="more">更多{{eventCategoryName}} ></a></div>
+        </div>
+      </li>
+      <li *ngFor="let event of events" class="home">
+        <a routerLink="{{setting.ROUTE_EVENT}}/{{event.eventCode}}">
+          <img src="{{event.eventImgPath}}" alt="{{event.eventTitle}}">
+          <div class="f-display-table">
+            <div class="title">{{event.eventTitle}}</div>
+          </div>
+          <div class="f-text-center"><span class="time">{{event.time}}</span></div>
+          <div class="f-text-center"><a routerLink="{{setting.ROUTE_EVENT}}/{{event.eventCode}}" class="booking">READ
+            MORE</a></div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

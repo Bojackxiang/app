@@ -1,0 +1,92 @@
+<div class="g-padding-wrapper">
+  <div class="g-container-center-padding">
+    <div class="m-title f-mgt-32 f-mgb-32">
+      <h2>用户中心</h2>
+      <div class="underline"><span></span></div>
+    </div>
+    <div class="m-table-area" *ngIf="user">
+      <div class="border-title f-mgt-32">个人信息</div>
+      <div class="border-box">
+        <table class="m-personal-information">
+          <tbody>
+          <tr>
+            <td width="15%" class="title">姓氏</td>
+            <td width="35%"><input type="text" class="u-input" name="lastname" [(ngModel)]="user.userLastName"></td>
+            <td width="15%" class="title">名字</td>
+            <td width="35%"><input type="text" class="u-input" name="firstname" [(ngModel)]="user.userFirstName"></td>
+          </tr>
+          <tr>
+            <td class="title">电话</td>
+            <td><input type="text" class="u-input" name="phone" [(ngModel)]="user.userPhone"></td>
+            <td class="title">Email订阅</td>
+            <td class="f-text-left">
+              <input type="radio" id="subscription_yes" name="emailSubscription" [value]="true"
+                     [(ngModel)]="user.emailSubscription">
+              <label for="subscription_yes">是</label>
+              <input type="radio" id="subscription_no" name="emailSubscription" [value]="false"
+                     [(ngModel)]="user.emailSubscription">
+              <label for="subscription_no">否</label>
+            </td>
+          </tr>
+          <tr>
+            <td class="title">微信</td>
+            <td><input type="text" class="u-input long" name="wechat" [(ngModel)]="user.userWeChat"></td>
+            <td class="title">QQ</td>
+            <td><input type="text" class="u-input long" name="qq" [(ngModel)]="user.userQq"></td>
+          </tr>
+          <tr>
+            <td class="title">地址</td>
+            <td><input type="text" class="u-input long" name="address" [(ngModel)]="user.userAddress"></td>
+            <td class="title">区</td>
+            <td><input type="text" class="u-input" name="suburb" [(ngModel)]="user.userSuburb"></td>
+          </tr>
+          <tr>
+            <td class="title">州</td>
+            <td>
+              <select name="state" id="" class="u-select" [(ngModel)]="user.userState">
+                <option value="NSW">NSW</option>
+                <option value="QLD">QLD</option>
+                <option value="VIC">VIC</option>
+                <option value="ACT">ACT</option>
+                <option value="WA">WA</option>
+                <option value="SA">SA</option>
+                <option value="TAS">TAS</option>
+                <option value="NT">NT</option>
+              </select>
+            </td>
+            <td class="title">邮编</td>
+            <td><input type="text" class="u-input" name="zipcode" [(ngModel)]="user.userZipCode"></td>
+          </tr>
+          <tr>
+            <td colspan="4" class="f-text-right"><a class="u-button f-mgt-32" (click)="updateUser()">修改信息</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="border-title f-mgt-32">修改密码</div>
+      <div class="border-box">
+        <table class="m-change-password">
+          <tbody>
+          <tr>
+            <td width="15%" class="title">旧密码</td>
+            <td width="35%"><input type="password" class="u-input" [(ngModel)]="userOriginalPassword"></td>
+            <td width="15%" class="title">新密码</td>
+            <td width="35%"><input type="password" class="u-input" [(ngModel)]="userNewPassword"></td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td width="15%" class="title">确认密码</td>
+            <td><input type="password" class="u-input" [(ngModel)]="userNewPasswordCheck"></td>
+          </tr>
+          <tr>
+            <td colspan="4" class="f-text-right"><a class="u-button" (click)="updateUserPassword()">修改密码</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="loading" *ngIf="!user">
+      <img src="/assets/images/loading.gif" width="50">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+.m-footer {
+  height: 30px;
+  color: #fff;
+  text-align: right;
+  line-height: 30px;
+  background: #231f20;
+  padding: 10px 0;
+  font-size: 10px;
+}
+
+.m-footer a {
+  color: #fff;
+  cursor: pointer;
+}

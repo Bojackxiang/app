@@ -1,0 +1,95 @@
+<div class="g-padding-wrapper">
+  <div class="g-container-center-padding">
+    <div class="m-event-content">
+      <div class="loading" *ngIf="!ticket">
+        <img src="/assets/images/loading.gif" width="50">
+      </div>
+      <div class="main" *ngIf="ticket">
+        <div class="side">
+          <div class="thumbnail">
+            <img src="{{ticket.ticketImgPath}}">
+          </div>
+          <div class="banner">
+            <img src="/assets/images/in_banner1.jpg">
+          </div>
+          <ticket-feature-side></ticket-feature-side>
+        </div>
+        <div class="body">
+          <div class="title">{{ticket.ticketTitle}}</div>
+          <div class="description" style="color: black;">{{ticket.ticketDescription}}</div>
+          <table>
+            <tr>
+              <td width="70" class="detail"><b>时 间：</b></td>
+              <td class="content" *ngIf="!ticket.ticketSaleOngoing">{{ticket.time}}</td>
+              <td class="content" *ngIf="ticket.ticketSaleOngoing">常年开放</td>
+            </tr>
+            <tr>
+              <td class="detail top">地 点：</td>
+              <td class="content"><b>{{ticket.ticketVenueName}}, {{ticket.ticketVenueAddress}},
+                {{ticket.ticketVenueSuburb}}, {{ticket.ticketVenueState}}, {{ticket.ticketVenueZipCode}}</b>
+              </td>
+            </tr>
+            <ng-template
+              [ngIf]="ticket.ticketSaleOngoing || ( !ticket.ticketSaleOngoing && ticket.ticketOpenUntil > date.getTime() )">
+              <tr>
+                <td class="detail choice-top">票 价：</td>
+                <td>
+                  <ul class="choice">
+                    <li *ngFor="let ticketType of ticket.ticketTypes">
+                      <a class="u-button"
+                         [class.active]="ticketType === currentTicketType"
+                         (click)="chooseTicketType(ticketType)">
+                      <b>{{ticketType.typeName}} ${{ticketType.typeNormalPrice}}</b>
+                      </a>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td class="detail">库 存：</td>
+                <td>
+                  <div class="stock" *ngIf="init">请指定门票</div>
+                  <div class="stock" *ngIf="!init">{{currentTicketType.typeStock}} 张</div>
+                </td>
+              </tr>
+              <tr>
+                <td class="detail">数 量：</td>
+                <td>
+                  <input type="number" class="u-input" name="number" [(ngModel)]="ticketNumber" min="1">
+                </td>
+              </tr>
+              <tr class="cart-td">
+                <td colspan="2">
+                  <a class="u-button u-button-cart" (click)="updateCart('addCart')">加入购物车</a>
+                  <a class="u-button u-button-red u-button-cart" (click)="updateCart('checkOut')">马上结账</a>
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template [ngIf]="!ticket.ticketSaleOngoing && ticket.ticketOpenUntil <= date.getTime()">
+              <tr>
+                <td class="detail">票 价：</td>
+                <td class="stock">
+                  已关闭售票
+                </td>
+              </tr>
+            </ng-template>
+          </table>
+          <div class="article map" *ngIf="ticket.ticketSeatImg">
+            <div class="head">场馆地图</div>
+            <div class="content">
+              <img src="{{ticket.ticketSeatImg}}" width="360">
+            </div>
+          </div>
+          <div class="article detail" *ngIf="ticket.ticketHtmlContent">
+            <ng-template [ngIf]="ticket.ticketHtmlContent.contentHtml">
+              <div class="head">活动简介</div>
+              <div class="content">
+                <div [innerHTML]="ticketArticle"></div>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="m-notice-box" [class.fadeIn]="bodyShow" id="notice-box">
+  <div class="body" [innerHTML]="noticeBodySafe"></div>
+  <div class="control">
+    <a *ngFor="let control of noticeControl" [class]="control.class" [id]="control.id">
+      {{control.string}}
+    </a>
+  </div>
+</div>
+<div class="m-notice-cover" [class.fadeIn]="coverShow" id="notice-cover"></div>

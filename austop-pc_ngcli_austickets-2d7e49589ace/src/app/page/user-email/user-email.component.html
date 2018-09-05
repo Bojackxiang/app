@@ -1,0 +1,17 @@
+<div class="g-padding-wrapper">
+  <div class="g-container-center-padding">
+    <div class="m-title f-mgt-32 f-mgb-32">
+      <h2>账号验证</h2>
+      <div class="underline"><span></span></div>
+    </div>
+    <div class="loading" *ngIf="!linkExpire">
+      <img src="/assets/images/loading.gif" width="50">
+    </div>
+    <div class="loading" *ngIf="linkExpire">
+      <div class="f-mgb-32">
+        <span>验证链接已经过期！系统将重新发送验证邮件！</span>
+      </div>
+      <div class="u-button u-button-red" (click)="resend()">确认发送</div>
+    </div>
+  </div>
+</div>

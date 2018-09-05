@@ -1,0 +1,33 @@
+<div *ngIf="tickets && tickets.length === 4">
+  <div class="g-padding-wrapper f-pdb-10">
+    <div class="g-container-center-padding">
+      <ul class="m-event-thumbnail-list">
+        <div class="m-title">
+          <h2>{{ticketCategoryName}}</h2>
+          <div class="underline"><span></span></div>
+        </div>
+        <div class="loading" *ngIf="!tickets">
+          <img src="/assets/images/loading.gif" width="50">
+        </div>
+        <li *ngFor="let ticket of tickets">
+          <a routerLink="{{setting.ROUTE_TICKET}}/{{ticket.ticketCode}}">
+            <img src="{{ticket.ticketImgPath}}" alt="{{ticket.ticketTitle}}">
+            <div class="title-wrap f-display-table">
+              <div class="title">{{ticket.ticketTitle}}</div>
+            </div>
+            <div class="f-text-center">
+              <span class="time" *ngIf="!ticket.ticketSaleOngoing">{{ticket.time}}</span>
+              <span class="time" *ngIf="ticket.ticketSaleOngoing">常年开放</span>
+            </div>
+            <div class="f-text-center"><a routerLink="{{setting.ROUTE_TICKET}}/{{ticket.ticketCode}}" class="booking">BOOKING
+              NOW</a></div>
+          </a>
+        </li>
+        <div class="f-text-center"><a routerLink="{{setting.ROUTE_TICKET}}/category/{{ticketCategoryName}}" class="more">更多{{ticketCategoryName}} ></a></div>
+      </ul>
+    </div>
+  </div>
+  <div class="m-banner">
+    <img src="/assets/images/banner1.jpg" width="100%">
+  </div>
+</div>

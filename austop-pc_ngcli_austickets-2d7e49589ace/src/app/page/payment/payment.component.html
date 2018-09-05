@@ -1,0 +1,86 @@
+<div class="g-padding-wrapper">
+  <div class="g-container-center-padding">
+    <div class="m-title f-mgt-32 f-mgb-32">
+      <h2>支付方式</h2>
+      <div class="underline"><span></span></div>
+    </div>
+    
+    <div class="m-payment-method">
+      <div class="loading" *ngIf="!payments || !order || order.orderStatus != 2">
+        <img src="/assets/images/loading.gif" width="50">
+      </div>
+      <table class="m-table-area m-payment-list" *ngIf="payments && order && order.orderStatus == 2">
+        <thead>
+        <tr>
+          <th width="30%" colspan="2"></th>
+          <th width="30%" class="f-text-left">方式</th>
+          <th width="40%" colspan="2">说明</th>
+        </tr>
+        </thead>
+        <tbody class="f-text-left">
+        <tr *ngFor="let payment of payments; let i = index;" class="method">
+          <td width="5%" class="f-text-center">
+            <input type="radio" name="payment" id="payment{{i}}" (click)="selectPayment(payment)">
+          </td>
+          <td width="25%" class="f-text-center">
+            <label attr.for="payment{{i}}">
+              <img src="{{payment.methodLogoUrl}}" width="80">
+            </label>
+          </td>
+          <td width="30%">
+            <label attr.for="payment{{i}}">
+              {{payment.methodName}}
+            </label>
+          </td>
+          <td width="40%" colspan="2" class="notice">
+            <label attr.for="payment{{i}}">
+              {{payment.methodExpectedConfirmTime}}确认支付<br>
+              <span>说明：{{payment.methodDescription}}</span>
+            </label>
+          </td>
+        </tr>
+        <tr class="last" *ngIf="selectedPayment">
+          <td colspan="5"></td>
+        </tr>
+        <tr class="last" *ngIf="selectedPayment">
+          <td width="60%" colspan="3"></td>
+          <td width="25%" class="f-text-right">订单金额</td>
+          <td width="15%" class="f-text-right">${{order.orderAmount.toFixed(2)}}</td>
+        </tr>
+        <tr class="last" *ngIf="selectedPayment">
+          <td colspan="3"></td>
+          <td class="f-text-right">支付手续费</td>
+          <td class="f-text-right">+ ${{surcharge.toFixed(2)}}
+            ({{selectedPayment.methodSurchargePercentage}}%
+            <ng-template [ngIf]="selectedPayment.methodSurchargeAmount"> +
+              ${{selectedPayment.methodSurchargeAmount.toFixed(2)}}
+            </ng-template>
+            )
+          </td>
+        </tr>
+        <tr class="last" *ngIf="selectedPayment">
+          <td colspan="3"></td>
+          <td class="f-text-right">支付方式折扣</td>
+          <td class="f-text-right">- ${{discount.toFixed(2)}} ({{selectedPayment.methodDiscountPercentage}}%
+            <ng-template [ngIf]="selectedPayment.methodDiscountAmount"> +
+              ${{selectedPayment.methodDiscountAmount.toFixed(2)}}
+            </ng-template>
+            )
+          </td>
+        </tr>
+        <tr class="last border" *ngIf="selectedPayment">
+          <td colspan="3"></td>
+          <td class="f-text-right">总支付金额</td>
+          <td class="f-text-right">${{totalAmount.toFixed(2)}}</td>
+        </tr>
+        <tr class="last" *ngIf="selectedPayment">
+          <td colspan="3"></td>
+          <td></td>
+          <td class="f-text-right"><a class="u-button u-button-red f-text-center" (click)="orderPay()">支付</a></td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

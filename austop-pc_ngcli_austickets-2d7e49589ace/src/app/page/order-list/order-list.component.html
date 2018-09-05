@@ -1,0 +1,42 @@
+<div class="g-padding-wrapper">
+  <div class="g-container-center-padding">
+    <div class="m-title f-mgt-32 f-mgb-32">
+      <h2>订单管理</h2>
+      <div class="underline"><span></span></div>
+    </div>
+    <div class="loading" *ngIf="!waitOrder">
+      <img src="/assets/images/loading.gif" width="50">
+    </div>
+    <div class="m-table-area" *ngIf="waitOrder && !hasOrders">
+      <div class="instruction">
+        目前暂无历史订单！
+      </div>
+    </div>
+    <div class="m-table-area" *ngIf="waitOrder && hasOrders">
+      <table id="order_histroy" class="m-order-event-list">
+        <thead>
+        <tr>
+          <th width="170">订单日期</th>
+          <th width="310">订单号</th>
+          <th width="90">订单状态</th>
+          <th width="90" class="f-text-right f-prd-10">订单金额</th>
+          <th width="150"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{order.time}}</td>
+          <td>{{order.orderCode}}</td>
+          <td>{{setting.ORDER_STATUS(order.orderStatus)}}</td>
+          <td class="f-text-right f-pdr-10">${{order.orderAmount}}</td>
+          <td>
+            <a *ngIf="order.orderStatus == 2" class="u-button order-pay"
+               routerLink="{{setting.ROUTE_ORDER}}/{{order.orderCode}}{{setting.ROUTE_PAYMENT}}">支付</a>
+            <a class="u-button" routerLink="{{setting.ROUTE_ORDER}}/{{order.orderCode}}">查看</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

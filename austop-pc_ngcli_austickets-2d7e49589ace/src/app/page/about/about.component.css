@@ -1,0 +1,15 @@
+/* About Us*/
+.m-about-us {
+  padding: 50px;
+  max-width: 800px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.m-about-us p {
+  color: #424242;
+  margin-bottom: 15px;
+  text-align: justify;
+  line-height: 18px;
+  font-size: 12px;
+}

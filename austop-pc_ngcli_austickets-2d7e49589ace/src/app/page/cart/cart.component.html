@@ -1,0 +1,52 @@
+<div class="g-padding-wrapper">
+  <div class="g-container-center-padding">
+    <div class="m-title f-mgt-32 f-mgb-32">
+      <h2>购物车</h2>
+      <div class="underline"><span></span></div>
+    </div>
+    <div class="m-table-area" *ngIf="!waitCart">
+      <div class="loading">
+        <img src="/assets/images/loading.gif" width="50">
+      </div>
+    </div>
+    <div class="m-table-area" *ngIf="waitCart && !hasCartItem">
+      <div class="instruction">
+        目前购物车为空！ 
+      </div>
+    </div>
+    <div class="m-table-area" *ngIf="hasCartItem">
+      <table class="m-order-event-list">
+        <thead>
+          <tr>
+            <th width="35%" class="first">活动项目</th>
+            <th width="20%">门票类型</th>
+            <th width="13%">数量</th>
+            <th width="12%">小计</th>
+            <th width="15%">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="product" *ngFor="let cartItem of cart.cartItems">
+            <td class="first">{{cartItem.itemTitle}}</td>
+            <td>{{cartItem.itemTypeName}} ${{cartItem.itemSinglePrice}}</td>
+            <td>
+              <input  type="number" class="u-input number" 
+                      value="{{cartItem.itemQuantity}}"
+                      (blur)="updateCartItem($event, cartItem)">
+            </td>
+            <td>$<span class="total">{{cartItem.itemTotalPrice}}</span></td>
+            <td>
+              <a class="u-button" (click)="deleteCartItem(cartItem)">删除</a>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td>合计</td>
+            <td>$<span id="cartAmount">{{cartTotalPrice}}</span></td>
+            <td><a class="u-button u-button-red order" routerLink="{{setting.ROUTE_ORDER}}/create">下单</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
