@@ -1,0 +1,13 @@
+.u-button {
+  margin-top: 20px;
+  margin-right: 0;
+  width: 100px;
+  padding: 8px 0 8px 4px;
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+
+.final-confirm .short {
+  height: 35px;
+}

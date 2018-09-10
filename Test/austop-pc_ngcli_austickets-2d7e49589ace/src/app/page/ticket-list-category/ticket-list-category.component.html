@@ -1,0 +1,32 @@
+<slide></slide>
+<div class="g-padding-wrapper">
+    <div class="g-container-center-padding">
+        <div class="m-title">
+            <h2>{{categoryName}}</h2>
+            <div class="underline"><span></span></div>
+        </div>
+        <div class="f-mgb-32">
+            <ticket-list-vertical [tickets]="categoryTickets"></ticket-list-vertical>
+        
+            <ng-template [ngIf]="pageMeta">
+                <ul class="m-paging" *ngIf="pageMeta.totalPageCount > 1">
+                    <li *ngIf="pageMeta.page != 1"><a class="u-button" (click)="gotoPage(1)">1</a></li>
+                    <li *ngIf="pageMeta.page - 2 > 1"><a class="u-button" (click)="gotoPage(pageMeta.page - 2)">{{pageMeta.page -
+                    2}}</a></li>
+                    <li *ngIf="pageMeta.page - 1 > 1"><a class="u-button" (click)="gotoPage(pageMeta.page - 1)">{{pageMeta.page -
+                    1}}</a></li>
+                    <li><a class="u-button active">{{pageMeta.page}}</a></li>
+                    <li *ngIf="pageMeta.page + 1 < pageMeta.totalPageCount"><a class="u-button"
+                                                                                (click)="gotoPage(pageMeta.page + 1)">{{pageMeta.page
+                    + 1}}</a></li>
+                    <li *ngIf="pageMeta.page + 2 < pageMeta.totalPageCount"><a class="u-button"
+                                                                                (click)="gotoPage(pageMeta.page + 2)">{{pageMeta.page
+                    + 2}}</a></li>
+                    <li *ngIf="pageMeta.page != pageMeta.totalPageCount"><a class="u-button"
+                                                                            (click)="gotoPage(pageMeta.totalPageCount)">{{pageMeta.totalPageCount}}</a>
+                    </li>
+                </ul>
+            </ng-template>
+        </div>
+    </div>
+</div>

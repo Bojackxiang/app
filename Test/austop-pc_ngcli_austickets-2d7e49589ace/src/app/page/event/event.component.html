@@ -1,0 +1,48 @@
+<div class="g-padding-wrapper">
+  <div class="g-container-center-padding">
+    <div class="m-event-content">
+      <div class="loading" *ngIf="!event">
+        <img src="/assets/images/loading.gif" width="50">
+      </div>
+      <div class="main" *ngIf="event">
+        <div class="side">
+          <div class="thumbnail">
+            <img src="{{event.eventImgPath}}">
+          </div>
+
+
+          <div class="banner">
+            <img src="/assets/images/in_banner1.jpg">
+          </div>
+
+          
+          <event-feature-side></event-feature-side>
+        </div>
+        <div class="body">
+          <div class="title">{{event.eventTitle}}</div>
+          <div class="description">{{event.eventDescription}}</div>
+          <table>
+            <tr>
+              <td width="70" class="detail">时 间：</td>
+              <td class="content">{{event.time}}</td>
+            </tr>
+            <tr>
+              <td class="detail top">地 点：</td>
+              <td class="content">{{event.eventVenueName}}
+                <ng-template [ngIf]="event.eventVenueAddress">, {{event.eventVenueAddress}}, {{event.eventVenueSuburb}},
+                  {{event.eventVenueState}}, {{event.eventVenueZipCode}}
+                </ng-template>
+            </tr>
+          </table>
+          <div class="article detail" *ngIf="event.eventHtmlContent">
+            <ng-template [ngIf]="event.eventHtmlContent.contentHtml">
+              <div class="head">资讯简介</div>
+              <div class="content">
+                <div [innerHTML]="eventArticle"></div>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

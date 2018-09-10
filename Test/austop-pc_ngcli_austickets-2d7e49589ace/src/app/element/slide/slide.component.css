@@ -1,0 +1,59 @@
+/* slide on index/event_list page */
+.m-slide-img-ul {
+  position: relative;
+  height: 480px;
+  overflow: hidden;
+  display: none;
+}
+
+@media (max-width: 1225px) {
+  .m-slide-img-ul {
+    height: 430px;
+  }
+}
+
+.m-slide-img-ul div {
+  height: 100%;
+  float: left;
+}
+
+.m-slide-img-ul div a {
+  display: block;
+  height: 100%;
+  cursor: pointer;
+  background-size: auto 100%;
+  background-position: center bottom;
+  background-repeat: no-repeat no-repeat;
+}
+
+.g-slide-title-wrapper {
+  background: #231f20;
+}
+
+.m-slide-title-ul {
+  text-align: center;
+  font-size: 0;
+}
+
+.m-slide-title-ul li {
+  width: 25%;
+  height: 40px;
+  display: inline-block;
+}
+
+.m-slide-title-ul li a {
+  display: table-cell;
+  vertical-align: middle;
+  height: 40px;
+  color: #fff;
+  font-size: 12px;
+  padding: 0 15px;
+  line-height: 20px;
+  word-spacing: 0px;
+  letter-spacing: 1px;
+}
+
+.m-slide-title-ul li.z-focus a, .m-slide-title-ul li a:hover {
+  background: #23b0d1;
+  cursor: pointer;
+}

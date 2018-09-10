@@ -1,0 +1,37 @@
+<div class="g-padding-wrapper">
+  <div class="g-container-center-padding">
+    <div class="m-title f-mgt-32 f-mgb-32">
+      <h2>取票点列表</h2>
+      <div class="underline"><span></span></div>
+    </div>
+    <div class="loading" *ngIf="!pickups">
+      <img src="/assets/images/loading.gif" width="50">
+    </div>
+    <div class="m-table-area" *ngIf="pickups">
+      <div class="f-text-center p-state-select">选择取票点所在州
+        <select [(ngModel)]="pickupState">
+          <option *ngFor="let state of pickupStates">{{state}}</option>
+        </select>
+      </div>
+      <table class="m-order-event-list">
+        <thead>
+        <tr>
+          <th width="35%" class="f-text-center">名称</th>
+          <th width="25%" class="f-text-center">开放时间</th>
+          <th width="40%" class="f-text-center">地址</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let pickup of pickups[pickupState]">
+          <td class="f-text-center">{{pickup.pointName}}</td>
+          <td class="f-text-center">{{pickup.pointOpeningTime}}</td>
+          <td class="f-text-left address">{{[pickup.pointAddress, pickup.pointSuburb, pickup.pointState + ' ' +
+            pickup.pointZipCode,
+            pickup.pointCountry].join(', ')}}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

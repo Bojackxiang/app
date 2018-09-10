@@ -1,0 +1,67 @@
+.m-payment-method {
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.m-payment-method th {
+  font-size: 12px;
+}
+
+.m-payment-list {
+  width: 100%;
+  text-align: center;
+}
+
+.m-payment-list tbody tr:nth-child(odd) {
+
+}
+
+.m-payment-list tbody tr:nth-child(even) {
+
+}
+
+.m-payment-list tbody tr {
+  border-bottom: 1px solid #e6e7e8;
+}
+
+.m-payment-list tbody tr.last {
+  background: none;
+  border-bottom: none;
+}
+
+.m-payment-list td {
+  vertical-align: middle;
+}
+
+.m-payment-list tr {
+  height: 35px;
+}
+
+.m-payment-list tr.method {
+  height: 80px;
+  line-height: 20px;
+  padding-left: 10px;
+}
+
+.m-payment-list tr.method img {
+  display: inline-block;
+}
+
+.m-payment-list .notice span {
+  font-size: 10px;
+  color: #adadad;
+}
+
+.m-payment-list .u-button {
+  width: 100px;
+  padding: 8px 0 8px 4px;
+  font-size: 12px;
+  text-align: center;
+  margin-right: 0;
+  margin-top: 20px;
+  letter-spacing: 4px;
+}
+
+.m-payment-list .border {
+  border-top: 1px solid #424242;
+}

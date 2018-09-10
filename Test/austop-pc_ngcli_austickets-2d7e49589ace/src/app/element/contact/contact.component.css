@@ -1,0 +1,22 @@
+.m-contact {
+  position: fixed;
+  right: 0;
+  top: 200px;
+  font-size: 0;
+  color: #424242;
+}
+
+.m-contact li {
+  display: block;
+  border-bottom: 1px solid transparent;
+}
+
+.m-contact a {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.m-contact li:last-child {
+  border-bottom: none;
+}

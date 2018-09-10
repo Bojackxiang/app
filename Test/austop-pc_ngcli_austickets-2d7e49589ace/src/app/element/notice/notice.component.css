@@ -1,0 +1,77 @@
+.m-notice-box {
+  background: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  text-align: center;
+  padding: 30px 50px;
+  z-index: -1;
+  box-sizing: border-box;
+  display: block;
+  opacity: 0;
+  transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  min-width: 200px;
+}
+
+.m-notice-box.fadeIn {
+  opacity: 1;
+  z-index: 9999;
+}
+
+.m-notice-box .body {
+  color: #424242;
+  margin: 20px 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.m-notice-cover {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: -1;
+  opacity: 0;
+  transition: 0.2s;
+  -webkit-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -o-transition: 0.2s;
+  -webkit-transition-property: opacity;
+  transition-property: opacity;
+  display: none;
+}
+
+.m-notice-cover.fadeIn {
+  opacity: 0.5;
+  z-index: 9998;
+  display: block;
+}
+
+:host > > > .m-notice-box h4 {
+  color: #424242;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+:host > > > .m-notice-box h4.line {
+  border-top: 1px solid #adadad;
+}
+
+:host > > > .m-notice-box p {
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: justify;
+  color: #adadad;
+}
+
+:host > > > .m-notice-box img {
+  max-width: 100%;
+}

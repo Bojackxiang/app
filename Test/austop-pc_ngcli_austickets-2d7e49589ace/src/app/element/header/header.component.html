@@ -1,0 +1,35 @@
+<header>
+  <div class="g-main-menu-wrapper">
+    <div class="g-container-center-padding f-clearfix">
+      <div class="f-fl">
+        <a class="u-logo" routerLink=""></a>
+      </div>
+      <div class="f-fl">
+        <ul class="m-main-menu-ul">
+          <li><a routerLink="/">首页</a></li>
+          <li>
+            <a>演出门票</a>
+            <div class="m-menu-padding"></div>
+            <ul class="m-submenu-ul">
+              <li *ngFor="let cat of ticketCats"><a [routerLink]="['/tickets/category/' + cat.catName, {salt: cat.catNameSalt}]">{{cat.catName}}</a></li>
+              <li><a routerLink="{{setting.ROUTE_TICKET}}">所有门票</a></li>
+            </ul>
+          </li>
+          <li>
+            <a>本地资讯</a>
+            <div class="m-menu-padding"></div>
+            <ul class="m-submenu-ul">
+              <li *ngFor="let cat of eventCats"><a [routerLink]="['/events/category/' + cat.catName, {salt: cat.catNameSalt}]">{{cat.catName}}</a></li>
+              <li><a routerLink="{{setting.ROUTE_EVENT}}">所有资讯</a></li>
+            </ul>
+          </li>
+          <li><a routerLink="{{setting.ROUTE_ABOUT}}">关于我们</a></li>
+        </ul>
+      </div>
+      <div class="f-fr">
+        <a routerLink="{{setting.ROUTE_CART}}" class="cart-button">购物车</a>
+        <user></user>
+      </div>
+    </div>
+  </div>
+</header>

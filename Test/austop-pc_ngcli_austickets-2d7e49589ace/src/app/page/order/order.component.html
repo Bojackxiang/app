@@ -1,0 +1,181 @@
+<div class="g-padding-wrapper">
+    <div class="g-container-center-padding">
+        <div class="m-title f-mgt-32 f-mgb-32">
+            <h2>订单详情</h2>
+            <div class="underline"><span></span></div>
+        </div>
+        <div class="loading" *ngIf="!order">
+            <img src="/assets/images/loading.gif" width="50"><br><br>
+            <a (click)="refresh()" class="u-button u-button-red">刷新页面</a>
+        </div>
+        <div class="m-table-area" *ngIf="order">
+            <div class="border-box border-none">
+                <table class="m-order-event-list">
+                    <thead>
+                    <tr>
+                        <th width="40%" class="first">活动项目</th>
+                        <th width="20%">门票类型</th>
+                        <th width="20%">数量</th>
+                        <th width="20%">小计</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let ticket of order.orderTicketsInfo">
+                        <td class="first">{{ticket.typeTicketTitle}}</td>
+                        <td>{{ticket.typeName}} ${{ticket.typeNormalPrice}}</td>
+                        <td>{{ticket.typeTicketRequestedQty}}</td>
+                        <td>${{ticket.orderPrice}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td>票务小计</td>
+                        <td>${{order.originOrderAmount}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="border-title f-mgt-32">取票信息</div>
+            <div class="border-box">
+                <table class="m-personal-information">
+                    <tbody>
+                    <tr>
+                        <td width="15%" class="title">订单时间</td>
+                        <td width="35%" class="f-text-left">{{order.time}}</td>
+                        <td width="15%" class="title">订单状态</td>
+                        <td width="35%" class="f-text-left">
+                            {{setting.ORDER_STATUS(order.orderStatus)}}
+                            <a class="m-link"
+                               *ngIf="(order.orderStatus === 2 || order.orderStatus === 8 || order.orderStatus === 10) && paymentCode && paymentMethodId === setting.ID_UNIONPAY"
+                               (click)="onClickRefreshPayment()">
+                                <!-- manual refresh order status -->
+                                刷新支付状态
+                            </a>
+                            <a class="m-link"
+                               *ngIf="isCardPaymentNotConfirmed"
+                               (click)="onClickRefreshStatus()">
+                                刷新订单状态
+                            </a>
+                            <span *ngIf="refreshingPaymentStatus"><img src="/assets/images/loading.gif"
+                                                                       width="20"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title">取票方式</td>
+                        <td class="f-text-left">
+                            <ng-template [ngIf]="order.orderPickupPoint">票务点取票</ng-template>
+                            <ng-template [ngIf]="order.orderDeliveryOption">邮寄</ng-template>
+                        </td>
+                        <ng-template [ngIf]="order.orderPickupPoint">
+                            <td class="title">取票点</td>
+                            <td class="f-text-left">{{order.orderPickupPointName}}</td>
+                        </ng-template>
+                        <ng-template [ngIf]="order.orderDeliveryOption">
+                            <td class="title">邮寄方式</td>
+                            <td class="f-text-left">{{order.orderDeliveryOptionName}}</td>
+                        </ng-template>
+                    </tr>
+                    <tr>
+                        <td class="title">姓氏</td>
+                        <td class="f-text-left">{{order.orderLastName}}</td>
+                        <td class="title">名字</td>
+                        <td class="f-text-left">{{order.orderFirstName}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">邮件</td>
+                        <td class="f-text-left">{{order.orderEmail}}</td>
+                        <td class="title">电话</td>
+                        <td class="f-text-left">{{order.orderPhone}}</td>
+                    </tr>
+                    <tr *ngIf="order.orderDeliveryOption">
+                        <td class="title">地址</td>
+                        <td class="f-text-left">{{order.orderAddress}}</td>
+                        <td class="title">区</td>
+                        <td class="f-text-left">{{order.orderSuburb}}</td>
+                    </tr>
+                    <tr *ngIf="order.orderDeliveryOption">
+                        <td class="title">州</td>
+                        <td class="f-text-left">{{order.orderState}}</td>
+                        <td class="title">邮编</td>
+                        <td class="f-text-left">{{order.orderZipCode}}</td>
+                    </tr>
+                    <tr>
+                        <td class="title">订单附言</td>
+                        <td class="f-text-left" colspan="3">{{order.orderPs}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="border-title f-mgt-32" *ngIf="order.couponUsed || order.giftCardUsed">优惠折扣</div>
+            <div class="border-box" *ngIf="order.couponUsed || order.giftCardUsed">
+                <table id="coupon" *ngIf="order.couponUsed">
+                    <tbody>
+                    <tr>
+                        <td width="15%">优惠券</td>
+                        <td width="65%">
+                            {{order.couponData.discountCode}}
+                        </td>
+                        <td width="20%">-${{order.orderSubInfo.subCouponDiscountAmount}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table id="giftcard" *ngIf="order.giftCardUsed">
+                    <tbody>
+                    <tr *ngFor="let giftCard of order.orderGiftCards; let i = index;">
+                        <td width="15%">
+                            <ng-template [ngIf]="i == 0">礼品卡</ng-template>
+                        </td>
+                        <td width="65%"> {{giftCard.discountCode}}</td>
+                        <td width="20%">-${{giftCard.giftCardUseAmount}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="border-up-box f-mgt-64">
+                <table class="final-confirm">
+                    <tbody>
+                    <tr class="short">
+                        <td width="60%"></td>
+                        <td width="30%" class="f-text-right">票务小计</td>
+                        <td width="10%" class="f-text-right">${{order.originOrderAmount}}</td>
+                    </tr>
+                    <tr class="short" *ngIf="order.orderDeliveryOption">
+                        <td></td>
+                        <td class="f-text-right">邮费</td>
+                        <td class="f-text-right">${{order.deliveryFee}}</td>
+                    </tr>
+                    <tr class="short" *ngIf="order.couponUsed">
+                        <td></td>
+                        <td class="f-text-right">优惠券</td>
+                        <td class="f-text-right">-${{order.orderSubInfo.subCouponDiscountAmount}}</td>
+                    </tr>
+                    <tr class="short" *ngIf="order.giftCardUsed">
+                        <td></td>
+                        <td class="f-text-right">礼品卡</td>
+                        <td class="f-text-right">-${{order.giftCardAmount}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="border-down-box">
+                <table class="final-confirm">
+                    <tr class="short">
+                        <td colspan="2" width="90%" class="f-text-right">订单总额 (GST. included)</td>
+                        <td width="10%" class="f-text-right">${{order.orderAmount}}</td>
+                    </tr>
+                    <tr class="short"
+                        *ngIf="order.orderStatus == 2 || order.orderStatus == 8 || order.orderStatus == 10">
+                        <td></td>
+                        <td></td>
+                        <td class="f-text-right">
+                            <a class="u-button u-button-red"
+                               routerLink="{{setting.ROUTE_ORDER}}/{{order.orderCode}}{{setting.ROUTE_PAYMENT}}">前往支付</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

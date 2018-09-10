@@ -1,0 +1,20 @@
+.u-button {
+  width: 100px;
+  padding: 8px 0 8px 4px;
+  margin: 20px 0 0 0;
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 4px;
+  display: inline-block;
+}
+
+.m-change-password .u-input {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.m-change-password td.title {
+  text-align: left;
+  text-indent: 2em;
+}

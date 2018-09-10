@@ -1,0 +1,72 @@
+.m-out-of-stock td {
+  padding: 10px;
+}
+
+.m-out-of-stock tbody tr:nth-child(odd), .m-delivery-list tbody tr:nth-child(odd), .m-pickup-list tbody tr:nth-child(odd) {
+
+}
+
+.m-out-of-stock tbody tr:nth-child(even), .m-delivery-list tbody tr:nth-child(even), .m-pickup-list tbody tr:nth-child(even) {
+
+}
+
+.m-out-of-stock tbody tr, .m-delivery-list tbody tr, .m-pickup-list tbody tr {
+  border-top: 1px solid #e6e7e8;
+}
+
+.m-delivery-list, .m-pickup-list {
+  letter-spacing: 0.5px;
+}
+
+.m-out-of-stock tbody tr.last, .m-delivery-list tbody tr.last {
+  background: none;
+}
+
+.m-pickup-list label {
+  line-height: 16px;
+}
+
+.m-order-event-list th.first {
+  padding-left: 18px;
+}
+
+.m-order-event-list th {
+  font-size: 12px;
+}
+
+.m-delivery-list th, .m-pickup-list th {
+  font-size: 12px;
+}
+
+#coupon td.title, #giftcard td.title {
+  text-indent: 2em;
+  text-align: left;
+}
+
+#coupon tr, #giftcard tr {
+  height: 40px;
+}
+
+#coupon input, #giftcard input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#coupon .u-button, #giftcard .u-button {
+  width: 70px;
+  text-align: center;
+}
+
+.final-confirm .short {
+  height: 35px;
+}
+
+.final-confirm .u-button {
+  margin-right: 0;
+  width: 100px;
+  padding: 8px 0 8px 4px;
+  font-size: 12px;
+  text-align: center;
+  letter-spacing: 4px;
+}
+

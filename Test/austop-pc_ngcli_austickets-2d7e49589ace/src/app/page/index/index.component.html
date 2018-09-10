@@ -1,0 +1,7 @@
+<slide></slide>
+<div *ngFor="let category of ticketCategories">
+    <ticket-feature [ticketCategoryName]="category.catName"></ticket-feature>
+</div>
+<div *ngFor="let category of eventCategories">
+    <event-feature [eventCategoryName]="category.catName"></event-feature>
+</div>
