@@ -1,0 +1,102 @@
+properties([
+  parameters([
+    choice (
+      choices: 'Staging\nProduction',
+      description: 'Select deployment environment.\nDeploy to Staging first before Production.\nBe CAUTIOUS when deploying to PRODUCTION!!',
+      name: 'DEPLOY_ENVIRONMENT'
+    )
+  ])
+])
+
+node {
+	stage('PC_Checkout') {
+		echo 'Checkout from PC repo'
+		git changelog: false, credentialsId: 'hansmong_austickets_bitbucket_jenkins', poll: false, url: 'https://hansmong@bitbucket.org/austop/pc_ngcli_austickets.git'
+	}
+}
+
+if (params.DEPLOY_ENVIRONMENT == 'Staging') {
+
+  node {
+    stage('BuildStaging') {
+      echo 'Build staging'
+      sh 'docker build -t austickets/webapp_pc . -f Dockerfile.build'
+      sh "docker run --name webapp_pc_build_${currentBuild.number} austickets/webapp_pc /bin/bash -c 'npm run ng build ; ls -la ; tar -C ./dist -czvf staging-austickets.tar.gz .'"
+      sh "docker cp webapp_pc_build_${currentBuild.number}:/usr/src/app/staging-austickets.tar.gz ."
+    }
+  }
+
+  stage 'DeployStagingConfirm'
+  input 'Deploy to staging?'
+
+  node {
+    stage('DeployStaging') {
+      echo 'Deployed to staging'
+      sh 'tar --overwrite --overwrite-dir -xzvf staging-austickets.tar.gz -C /var/www/staging.austickets.com.au/'
+    }
+  }
+
+  node {
+    stage('CleanUpStaging') {
+      echo 'Cleaning up staging'
+      sh 'ls -la'
+      echo "webapp_pc_build_${currentBuild.number}"
+      try {
+        sh 'rm -f staging-austickets.tar.gz'
+        sh "docker rm -f webapp_pc_build_${currentBuild.number}"
+        sh "docker rm \$(docker ps -aq --filter \"status=exited\") || true"
+        sh "docker rmi \$(docker images -aq --filter \"dangling=true\") || true"
+      } catch (e) {
+        echo "${e}"
+        echo 'Ignore cleanup failure'
+      }
+      echo 'Cleaned up staging'
+    }
+  }
+
+} else if (params.DEPLOY_ENVIRONMENT == 'Production') {
+
+  node {
+    stage('BuildProd') {
+      echo 'Build production'
+      sh 'pwd'
+      sh 'ls -la'
+      currTs = sh (
+        script: 'date +%s',
+        returnStdout: true
+      ).trim()
+      sh "docker run --name webapp_pc_build_${currentBuild.number}_${currTs} austickets/webapp_pc /bin/bash -c 'npm run ng build -- --prod ; ls -la ; tar -C ./dist -czvf prod-austickets.tar.gz .'"
+      sh "docker cp webapp_pc_build_${currentBuild.number}_${currTs}:/usr/src/app/prod-austickets.tar.gz ."
+    }
+  }
+
+  stage 'DeployProdConfirm'
+  input 'Deploy to production?'
+
+  node {
+    stage('DeployProd') {
+      if (params.DEPLOY_ENVIRONMENT == 'Production') {
+        sh 'tar --keep-newer-files -xzvf prod-austickets.tar.gz -C /var/www/austickets.com.au/'
+        echo 'Deployed to production'
+      }
+    }
+  }
+
+  node {
+    stage('CleanUpProd') {
+      echo 'Clean up production'
+      try {
+        sh 'rm -f prod-austickets.tar.gz'
+        sh "docker rm -f webapp_pc_build_${currentBuild.number}_${currTs}"
+        sh "docker rm \$(docker ps -aq --filter \"status=exited\") || true"
+        sh "docker rmi \$(docker images -aq --filter \"dangling=true\") || true"
+      } catch (e) {
+        echo "${e}"
+        echo 'Ignore cleanup failure'
+      }
+      echo 'Cleaned up production'
+    }
+  }
+
+}
+

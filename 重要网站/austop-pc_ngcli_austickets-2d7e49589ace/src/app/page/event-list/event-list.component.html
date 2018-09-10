@@ -1,0 +1,55 @@
+<slide></slide>
+<div class="g-padding-wrapper">
+  <div class="g-container-center-padding">
+    <div class="m-title">
+      <h2>本地资讯</h2>
+      <div class="underline"><span></span></div>
+    </div>
+    <div class="f-mgb-32">
+      <div class="m-sift">
+        <div class="m-sift-choice">
+          <div class="choice-block">
+            <div class="title">时间：</div>
+            <ul class="choice time_button">
+              <li><a (click)="chooseTime('all')" class="u-button" [class.active]="time == 'all'">全部</a></li>
+              <li><a (click)="chooseTime('week')" class="u-button" [class.active]="time == 'week'">一周内</a></li>
+              <li><a (click)="chooseTime('month')" class="u-button" [class.active]="time == 'month'">一月内</a></li>
+            </ul>
+          </div>
+          <div class="choice-block">
+            <div class="title">按时间段：</div>
+            <input class="u-input" [(ngModel)]="inputTimeStart" placeholder="2017-01-30">
+            至
+            <input class="u-input" [(ngModel)]="inputTimeEnd" placeholder="2017-07-30">
+            <a class="u-button confirm" (click)="chooseTime('period')">确 定</a>
+          </div>
+        </div>
+      </div>
+      <div class="loading" *ngIf="!waitEvents">
+        <img src="/assets/images/loading.gif" width="50">
+      </div>
+      
+      <event-list-vertical [events]="events"></event-list-vertical>
+
+      <ng-template [ngIf]="pageMeta">
+        <ul class="m-paging" *ngIf="pageMeta.totalPageCount > 1">
+          <li *ngIf="pageMeta.page != 1"><a class="u-button" (click)="gotoPage(1)">首1</a></li>
+          <li *ngIf="pageMeta.page - 2 > 1"><a class="u-button" (click)="gotoPage(pageMeta.page - 2)">{{pageMeta.page -
+            2}}</a></li>
+          <li *ngIf="pageMeta.page - 1 > 1"><a class="u-button" (click)="gotoPage(pageMeta.page - 1)">{{pageMeta.page -
+            1}}</a></li>
+          <li><a class="u-button active">{{pageMeta.page}}</a></li>
+          <li *ngIf="pageMeta.page + 1 < pageMeta.totalPageCount"><a class="u-button"
+                                                                     (click)="gotoPage(pageMeta.page + 1)">{{pageMeta.page
+            + 1}}</a></li>
+          <li *ngIf="pageMeta.page + 2 < pageMeta.totalPageCount"><a class="u-button"
+                                                                     (click)="gotoPage(pageMeta.page + 2)">{{pageMeta.page
+            + 2}}</a></li>
+          <li *ngIf="pageMeta.page != pageMeta.totalPageCount"><a class="u-button"
+                                                                  (click)="gotoPage(pageMeta.totalPageCount)">{{pageMeta.totalPageCount}}</a>
+          </li>
+        </ul>
+      </ng-template>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="/">
+  <title>AusTickets - 致力于打造全澳最实时，方便，快捷的华人票务销售网络平台</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!--[if lte IE 9]>
+  <script type="text/javascript">
+    window.location.href = '/assets/html/kick_ie9.html';
+  </script>
+  <![endif]-->
+</head>
+<body>
+<app-root>
+  <div style="width:100%;height:100%;text-align:center">
+    <img src="/assets/images/loading.gif" width="50" style="margin-top:300px;margin-bottom:20px;">
+    <p style="color:#fff;">
+      请稍等片刻！<br><br>
+      Please wait for a moment!
+    </p>
+  </div>
+</app-root>
+<script src="https://www.paypalobjects.com/api/checkout.js" data-version-4></script>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-88331072-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<div class="m-slide">
+  <div class="g-slide-img-wrapper">
+    <div class="g-container-center">
+      <div class="loading loading-slide" *ngIf="!slides">
+        <img src="/assets/images/loading.gif" width="50">
+      </div>
+      <div class="m-slide-img-ul">
+        <div *ngFor="let slide of slides" [style.width]="cssSlideWidth">
+          <a href="{{slide.slideClickUrl}}" [style.background-image]="slide.cssBackgroundImage">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="g-slide-title-wrapper">
+    <div class="g-container-center-padding">
+      <ul class="m-slide-title-ul">
+        <li *ngFor="let slide of slides; let i = index;" [class.z-focus]="slide === currentSlide"
+            (click)="chooseSlide(i)">
+          <div class="f-display-table">
+            <a>{{slide.slideTitle}}</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

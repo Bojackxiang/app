@@ -1,0 +1,328 @@
+<div class="g-padding-wrapper">
+  <div class="g-container-center-padding">
+    <div class="m-title f-mgt-32 f-mgb-32">
+      <h2>创建订单</h2>
+      <div class="underline"><span></span></div>
+    </div>
+    <div class="loading" *ngIf="!cart">
+      <img src="/assets/images/loading.gif" width="50">
+    </div>
+    <div class="m-table-area" *ngIf="cart && !outOfStock">
+      <div class="border-box border-none">
+        <table class="m-order-event-list">
+          <thead>
+          <tr>
+            <th width="40%" class="first">活动项目</th>
+            <th width="20%">门票类型</th>
+            <th width="20%">数量</th>
+            <th width="20%">小计</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let cartItem of cart.cartItems">
+            <td class="first">{{cartItem.itemTitle}}</td>
+            <td>{{cartItem.itemTypeName}} ${{cartItem.itemSinglePrice}}</td>
+            <td>{{cartItem.itemQuantity}}</td>
+            <td>$<span class="total">{{cartItem.itemTotalPrice}}</span></td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td>票务小计</td>
+            <td>${{cartTotalPrice}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="border-title f-mgt-32">
+        取票方式
+      </div>
+      <div class="border-box">
+        <table>
+          <tbody>
+          <tr>
+            <td width="5%" class="f-text-center">
+              <input type="radio" name="shipping" id="shipping1" (click)="selectShippingOption('pickUp')" checked>
+            </td>
+            <td width="15%" class="first">
+              <label for="shipping1">
+                票务点取票
+              </label>
+            </td>
+            <td width="5%" class="f-text-center">
+              <input type="radio" name="shipping" id="shipping2" (click)="selectShippingOption('delivery')">
+            </td>
+            <td width="15%" class="first">
+              <label for="shipping2">
+                邮寄
+              </label>
+            </td>
+            <td width="60%"></td>
+          </tr>
+          </tbody>
+        </table>
+        <table *ngIf="shippingOption == 'pickUp'" class="m-pickup-list">
+          <thead>
+          <tr>
+            <th></th>
+            <th class="first">票务点选择</th>
+            <th>地址</th>
+            <th>取票时间</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          
+          <tr>
+            <td></td>
+            <td class="first">
+
+                <!-- select element -->
+                <div class="drop-down">
+                    <select [(ngModel)]="pickUpState" (change)="selectPickUpState()" class="u-select" style="text-indent: 0px; width:120px;">
+    +                 <option value="NSW">请选择取票地区</option>        
+    +                 <option value="NSW">NSW</option>
+    +                 <option value="VIC">VIC</option>
+    +              </select>              
+               </div>
+            </td>
+
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr *ngFor="let pickUp of pickUps;let i = index">
+            <td width="5%" class="f-text-center">
+              <input type="radio" name="pickUp" id="pickUp{{i}}" (click)="selectPickUp(pickUp)" *ngIf="!i" checked>
+              <input type="radio" name="pickUp" id="pickUp{{i}}" (click)="selectPickUp(pickUp)" *ngIf="i">
+            </td>
+            <td width="25%" class="first">
+              <label attr.for="pickUp{{i}}">
+                {{pickUp.pointName}}
+              </label>
+            </td>
+            <td width="50%" class="f-text-left">
+              <label attr.for="pickUp{{i}}">
+                {{pickUp.pointAddress}}, {{pickUp.pointSuburb}}, {{pickUp.pointState}}, {{pickUp.pointZipCode}}
+              </label>
+            </td>
+            <td width="20%">
+              <label attr.for="pickUp{{i}}">
+                {{pickUp.pointOpeningTime}}
+              </label>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <table *ngIf="shippingOption == 'delivery'" class="m-delivery-list">
+          <thead>
+          <tr>
+            <th></th>
+            <th class="first">邮寄选择</th>
+            <th colspan="3">说明</th>
+            <th>邮费</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let delivery of deliveries;let i = index">
+            <td width="5%" class="f-text-center">
+              <input type="radio" name="delivery" id="delivery{{i}}" (click)="selectDelivery(delivery)" *ngIf="!i"
+                     checked>
+              <input type="radio" name="delivery" id="delivery{{i}}" (click)="selectDelivery(delivery)" *ngIf="i">
+            </td>
+            <td width="15%" class="first">
+              <label attr.for="delivery{{i}}">
+                {{delivery.deliveryOptionName}}
+              </label>
+            </td>
+            <td width="60%" colspan="3">
+              <label attr.for="delivery{{i}}">
+                {{delivery.deliveryOptionDescription}}
+              </label>
+            </td>
+            <td width="20%">
+              <label attr.for="delivery{{i}}">
+                ${{delivery.deliveryOptionFee}}
+              </label>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="border-title f-mgt-64">
+        优惠折扣
+      </div>
+      <div class="border-box">
+        <table id="coupon">
+          <tbody>
+          <tr>
+            <td width="15%" class="title">优惠券</td>
+            <td width="45%" class="first">
+              <input type="text" name="coupon" class="u-input" [(ngModel)]="couponCode">
+            </td>
+            <td width="20%">
+              <a *ngIf="!usedCouponCode" class="u-button" (click)="useCoupon()">使用优惠券</a>
+              <a *ngIf="usedCouponCode" class="u-button" (click)="cancelCoupon()">取消</a>
+            </td>
+            <td width="20%">
+              <span *ngIf="usedCouponCode">-${{couponUseAmount}}</span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <table id="giftcard">
+          <tbody>
+          <tr *ngFor="let giftcard of usedGiftcard; let i = index;">
+            <td width="15%" class="title">
+              <ng-template [ngIf]="i == 0">礼品卡</ng-template>
+            </td>
+            <td width="45%" class="first">
+              <input type="text" name="coupon" class="u-input" value="{{giftcard.discountCode}}">
+            </td>
+            <td width="20%"><a class="u-button" (click)="cancelGiftcard(giftcard)">取消</a></td>
+            <td width="20%">-${{giftcard.giftCardUseAmount}}</td>
+          </tr>
+          <tr>
+            <td width="15%" class="title">
+              <ng-template [ngIf]="usedGiftcard.length == 0">礼品卡</ng-template>
+            </td>
+            <td width="45%" class="first">
+              <input type="text" name="coupon" class="u-input" [(ngModel)]="giftcardCode">
+            </td>
+            <td width="20%"><a class="u-button" (click)="useGiftcard()">使用礼品卡</a></td>
+            <td width="20%"></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="border-title f-mgt-64">
+        取票信息
+      </div>
+      <div class="border-box">
+        <table class="m-personal-information">
+          <tbody>
+          <tr>
+            <td width="15%" class="title">姓氏</td>
+            <td width="35%"><input type="text" class="u-input" [(ngModel)]="lastname"></td>
+            <td width="15%" class="title">名字</td>
+            <td width="35%"><input type="text" class="u-input" [(ngModel)]="firstname"></td>
+          </tr>
+          <tr>
+            <td class="title">邮件</td>
+            <td><input type="text" class="u-input long" [(ngModel)]="email"></td>
+            <td class="title">电话</td>
+            <td><input type="text" class="u-input" [(ngModel)]="phone"></td>
+          </tr>
+          <tr *ngIf="shippingOption == 'delivery'">
+            <td class="title">地址</td>
+            <td><input type="text" class="u-input long" [(ngModel)]="address"></td>
+            <td class="title">区</td>
+            <td><input type="text" class="u-input" [(ngModel)]="suburb"></td>
+          </tr>
+          <tr *ngIf="shippingOption == 'delivery'">
+            <td class="title">州</td>
+            <td>
+              <select [(ngModel)]="state" class="u-select">
+                <option value="NSW">NSW</option>
+                <option value="QLD">QLD</option>
+                <option value="VIC">VIC</option>
+                <option value="ACT">ACT</option>
+                <option value="WA">WA</option>
+                <option value="SA">SA</option>
+                <option value="TAS">TAS</option>
+                <option value="NT">NT</option>
+              </select>
+            </td>
+            <td class="title">邮编</td>
+            <td><input type="text" class="u-input" [(ngModel)]="zipcode"></td>
+          </tr>
+          <tr class="top">
+            <td class="title">订单附言</td>
+            <td colspan="3"><textarea class="u-textarea" cols="40" rows="5" [(ngModel)]="orderPS"></textarea></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="border-up-box f-mgt-64">
+        <table class="final-confirm">
+          <tbody>
+          <tr class="short">
+            <td width="60%"></td>
+            <td width="30%" class="f-text-right">票务小计</td>
+            <td width="10%" class="f-text-right">${{cartTotalPrice}}</td>
+          </tr>
+          <tr class="short" *ngIf="shippingOption == 'delivery'">
+            <td></td>
+            <td class="f-text-right">邮费</td>
+            <td class="f-text-right">${{deliveryPrice}}</td>
+          </tr>
+          <tr class="short" *ngIf="usedCouponCode">
+            <td></td>
+            <td class="f-text-right">优惠券</td>
+            <td class="f-text-right">-${{couponUseAmount}}</td>
+          </tr>
+          <ng-template [ngIf]="usedGiftcard">
+            <tr class="short" *ngFor="let giftcard of usedGiftcard; let i = index">
+              <td></td>
+              <td class="f-text-right">礼品卡{{i+1}}</td>
+              <td class="f-text-right">-${{giftcard.giftCardUseAmount}}</td>
+            </tr>
+          </ng-template>
+          </tbody>
+        </table>
+      </div>
+      <div class="border-down-box">
+        <table class="final-confirm">
+          <tr class="short">
+            <td width="60%"></td>
+            <td width="30%" class="f-text-right">订单总额 (GST. included)</td>
+            <td width="10%" class="f-text-right">${{payPrice}}</td>
+          </tr>
+          <tr class="short">
+            <td></td>
+            <td colspan="2" class="f-text-right">
+              <input type="checkbox" [(ngModel)]="policyAgreement" id="order_agree"><label
+              for="order_agree">阅读并同意 </label><a class="iframe" (click)="commonService.iframe('refund')">送退货政策</a>
+            </td>
+          </tr>
+          <tr class="short">
+            <td></td>
+            <td></td>
+            <td class="f-text-right">
+              <a class="u-button u-button-red" (click)="submitOrder()">确认下单</a></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="f-text-center" *ngIf="outOfStock">
+      <table class='m-out-of-stock m-table-area f-display-inline-block'>
+        <thead>
+        <tr>
+          <td>活动项目</td>
+          <td>门票类型</td>
+          <td>购买数量</td>
+          <td>实际库存</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of outOfStockItems">
+          <td>{{item.itemTitle}}</td>
+          <td>{{item.itemTypeDescription}} ${{item.itemSinglePrice}}</td>
+          <td>{{item.itemQuantity}}</td>
+          <td>{{item.typeStock}}</td>
+        </tr>
+        <tr class="last">
+          <td colspan="4">由于未立即下单，商品库存已不足！请返回购物车修改商品！</td>
+        </tr>
+        <tr class="last">
+          <td colspan="4"><a routerLink="{{setting.ROUTE_CART}}" class="u-button u-button-red">返回</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

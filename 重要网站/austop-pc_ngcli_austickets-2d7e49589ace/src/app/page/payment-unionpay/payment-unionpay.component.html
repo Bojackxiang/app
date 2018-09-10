@@ -1,0 +1,39 @@
+<div class="g-padding-wrapper">
+  <div class="g-container-center-padding">
+    <div class="m-title f-mgt-32 f-mgb-32">
+      <h2>银联在线支付</h2>
+      <div class="underline"><span></span></div>
+      <div class="back"><a (click)="gotoPaymentList()">< 更换支付方式</a></div>
+    </div>
+    <div class="loading" *ngIf="!unionpayPurchase">
+      <img src="/assets/images/loading.gif" width="50">
+    </div>
+    <div class="m-payment" *ngIf="unionpayPurchase">
+      <table class="payment" *ngIf="totalAmount">
+        <tr>
+          <td>收款账号</td>
+          <td>AusTop Media Pty Ltd</td>
+        </tr>
+        <tr>
+          <td>订单号</td>
+          <td>{{this.orderCode}}</td>
+        </tr>
+        <tr>
+          <td>总订单金额</td>
+          <td><span class="title">{{this.totalAmount.toFixed(2)}}</span> (${{orderAmount.toFixed(2)}} +
+            ${{surcharge.toFixed(2)}} + ${{discount.toFixed(2)}})
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="f-text-right">
+            <form ngNoForm id="unionpayForm" method="post" action="{{unionpayPurchase.actionUrl}}">
+              <input *ngFor="let k of unionpayObjectKeys" type="hidden" name="{{k}}" id="{{k}}"
+                     value="{{unionpayPurchase[k]}}">
+              <input type="submit" id="unionpaySubmit" class="u-button u-button-red u-button-td" value="去银联支付">
+            </form>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

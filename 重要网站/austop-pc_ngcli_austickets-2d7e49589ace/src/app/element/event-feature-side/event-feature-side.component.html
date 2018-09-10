@@ -1,0 +1,16 @@
+<div class="loading" *ngIf="!events">
+  <img src="/assets/images/loading.gif" width="50">
+</div>
+<div class="article" *ngIf="events">
+  <div class="head">资讯推荐</div>
+  <div class="content">
+    <ul class="m-event-thumbnail-list-side">
+      <li *ngFor="let event of events">
+        <a routerLink="{{setting.ROUTE_EVENT}}/{{event.eventCode}}">
+          <img src="{{event.eventImgPath}}" alt="{{event.eventTitle}}">
+          <div class="title">{{event.eventTitle}}</div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

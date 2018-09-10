@@ -1,0 +1,69 @@
+.m-event-content .body .choice li {
+  display: inline-block;
+}
+
+.m-event-content .body .choice li a {
+  margin: 5px 5px 5px 0;
+}
+
+.m-event-content .choice .u-button {
+  font-size: 14px;
+  background: #fff;
+  border: 1px solid #424242;
+  color: #424242;
+}
+
+.m-event-content .choice .u-button:hover, .m-event-content .choice .u-button.active {
+  background: #23b0d1;
+  border: 1px solid #23b0d1;
+  color: #fff;
+}
+
+.m-event-content .stock {
+  font-size: 14px;
+  color: #424242;
+  vertical-align: middle;
+}
+
+.m-event-content input {
+  margin: 0;
+  width: 70px;
+}
+
+.m-event-content .u-button {
+  min-width: 100px;
+  text-align: center;
+  margin: 10px 10px 10px 0;
+}
+
+.m-event-content .body .map img {
+  margin: 0 auto;
+  display: block;
+}
+
+.m-event-content .u-button-cart {
+  font-size: 14px;
+  padding: 13px 0;
+  width: 48%;
+  letter-spacing: 4px;
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 0;
+  max-width: 250px;
+}
+
+.m-event-content .u-button-cart:first-child {
+  margin-right: 2%
+}
+
+.m-event-content .cart-td td {
+  padding: 15px 60px 15px 0;
+}
+
+.description{
+  color: black;
+}
+
+.detail .content{
+  font-weight: bold;
+}

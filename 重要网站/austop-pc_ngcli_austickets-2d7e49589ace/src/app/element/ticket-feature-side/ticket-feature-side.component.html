@@ -1,0 +1,16 @@
+<div class="loading" *ngIf="!tickets">
+  <img src="/assets/images/loading.gif" width="50">
+</div>
+<div class="article" *ngIf="tickets">
+  <div class="head">活动推荐</div>
+  <div class="content">
+    <ul class="m-event-thumbnail-list-side">
+      <li *ngFor="let ticket of tickets">
+        <a routerLink="{{setting.ROUTE_TICKET}}/{{ticket.ticketCode}}">
+          <img src="{{ticket.ticketImgPath}}" alt="{{ticket.ticketTitle}}">
+          <div class="title">{{ticket.ticketTitle}}</div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

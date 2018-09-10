@@ -1,0 +1,25 @@
+.m-order-event-list th.first {
+  padding-left: 18px;
+}
+
+.product .u-button {
+  background: #fff;
+  color: #23b0d1;
+}
+
+.product .u-button:hover {
+  background: #23b0d1;
+  color: #fff;
+}
+
+th {
+  font-size: 12px;
+}
+
+.u-button.order {
+  padding: 8px 0 8px 4px;
+  font-size: 12px;
+  width: 100px;
+  display: inline-block;
+  letter-spacing: 4px;
+}

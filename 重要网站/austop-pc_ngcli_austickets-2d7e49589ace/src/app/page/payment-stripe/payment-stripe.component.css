@@ -1,0 +1,46 @@
+.input-group {
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 400px;
+}
+
+#cardNumber, #cardExpiry, #cardCvc {
+  border: 1px solid rgb(230, 231, 232);
+  padding: 0 14px;
+}
+
+.card-input-error {
+  color: #d9534f;
+  font-size: 0.7rem;
+}
+
+label {
+  font-size: 0.8rem;
+  display: block;
+  padding-bottom: 20px;
+}
+
+.back {
+  font-size: 0.8rem;
+}
+
+.border-box {
+  margin-bottom: 40px;
+}
+
+.m-personal-information {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+.m-personal-information tr {
+  border-bottom: 20px solid transparent;
+}
+
+.u-input {
+  margin-left: 0;
+  margin-right: 0;
+}

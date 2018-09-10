@@ -1,0 +1,46 @@
+<div class="g-padding-wrapper">
+  <div class="g-container-center-padding">
+    <div class="m-title f-mgt-32 f-mgb-32">
+      <h2>银行转账</h2>
+      <div class="underline"><span></span></div>
+      <div class="back"><a (click)="gotoPaymentList()">< 更换支付方式</a></div>
+    </div>
+    <div class="m-payment">
+      <table class="payment" *ngIf="orderAmount">
+        <tr>
+          <td>银行账号</td>
+          <td>Austop Media Pty Ltd</td>
+        </tr>
+        <tr>
+          <td>BSB</td>
+          <td>032006</td>
+        </tr>
+        <tr>
+          <td>ACCOUNT</td>
+          <td>699699</td>
+        </tr>
+        <tr>
+          <td>订单号</td>
+          <td>{{this.orderCode}}</td>
+        </tr>
+        <tr>
+          <td>总订单金额</td>
+          <td><span class="title">${{this.orderAmount.toFixed(2)}}</span></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="f-text-right">
+            <a class="u-button u-button-red u-button-td" (click)="paymentConfirm()">确认支付</a>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="description">
+            *请尽快向以上银行账号汇款以防止门票售罄，
+            为方便核对，请备注您的下单邮箱或手机号，
+            AusTickets将在3-4个工作日内确认到账并向您的邮箱发送订单确认信，
+            将转账截图发送至微信客服，可即刻确认！
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
